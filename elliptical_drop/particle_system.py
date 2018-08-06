@@ -72,5 +72,6 @@ class ParticleSystem:
 		
 					
 			
-	
-					
+	def collision_detection(self):
+
+							
