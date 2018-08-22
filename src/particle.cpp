@@ -3,11 +3,21 @@
 #include<vector>
 
 //Constructor
-Particle :: Particle(float m) {
+Particle :: Particle(float m, int type=0) {
 	this->m = m;
+	this->ptype=type;
 }
 
 // Getters
+
+float Particle :: getPressure() {
+	return this->pressure;
+}
+
+int Particle :: getType() {
+	return ptype;
+}
+
 float Particle :: getDensity() {
         return rho;
 }
@@ -28,7 +38,15 @@ float Particle :: getKernelLength() {
 	return h;
 }
 
+float Particle :: getMass() {
+	return m;
+}
+
 //Setters
+void Particle :: setPressure(float pressure) {
+	this->pressure = pressure;
+}
+
 void Particle :: setDensity(float rho) {
         this->rho = rho;
 }
