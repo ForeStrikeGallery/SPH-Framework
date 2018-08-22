@@ -13,7 +13,7 @@ using namespace std;
 Utility util;
 
 NearestNeighbourSearch :: NearestNeighbourSearch() {
-	cout << "nnsearch initialised ";
+//	cout << "nnsearch initialised ";
 }
 
 vector<vector <int> > NearestNeighbourSearch :: search ( vector<Particle> &p, \
