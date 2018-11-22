@@ -8,13 +8,13 @@ using namespace std;
 System :: System() {
 
 	mass = 0.02;
-	timeStep = 2;
+	timeStep = 0.02;
 	initialSpacing = 0.02;
 	
 	//initialise particle, custom
 	vector<Particle> particles; 
 
-	// a circle of radius 0.2m, height 5m
+	
 
 	float x_start = -0.2, x_end = 0.2, x_step=0.02;
 	float y_start = 5.2, y_end = 4.8, y_step = 0.02;
@@ -24,6 +24,8 @@ System :: System() {
 		while(y_start > y_end) {	
 			Particle p(mass, 0);
 			p.setPosition(make_pair(x_start, y_start));
+			p.setKernelLength(2*initialSpacing);
+			p.setVelocity(make_pair(0, 0));
 			particles.push_back(p);
 			y_start -= y_step;		
 		}
@@ -34,6 +36,13 @@ System :: System() {
 
 	float x_1 = -1, x_2=1;
 	y_start = 5, y_end = 0, y_step = 0.02;
+	//set boundary
+        
+	B.xmin = -2;
+	B.xmax = 2;
+	B.ymin = 0;
+	B.ymax = 10;
+
 	
 	while(y_start > y_end) {
 		Particle p1(mass, 1);
@@ -78,6 +87,19 @@ float System :: getInitialSpacing() {
 float System :: getD() {
 	return D;
 }
+
+void System :: setParticles(vector<Particle> p) {
+	this->particles = p;
+}
+
+Boundary System :: getBoundary() {
+	return this->B;
+}
+
+void System :: setBoundary(Boundary B) {
+	this->B = B;
+}
+
 /*
 int main() {
 	System s;

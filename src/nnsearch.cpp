@@ -5,6 +5,7 @@
 #include<time.h>
 #include<cstdlib>
 #include<algorithm>
+#include<cstdio>
 #include "nnsearch.h"
 using namespace std;
 
@@ -36,13 +37,14 @@ vector<vector <int> > NearestNeighbourSearch :: search ( vector<Particle> &p, \
 
 vector< vector<int> >  NearestNeighbourSearch :: allPairsSearch(vector<Particle> &p) {
 
+	printf("all pairs search initiated for %d particles\n", int(p.size())); 
         srand(time(NULL));
         vector< vector<int> > neighbours;
         for (vector<Particle> :: iterator itr = p.begin(); itr != p.end(); itr++) {
                 Particle node = *itr;
                 vector< pair<float, int> > distance_from_node;
                 pair<float, float> node_pos = node.getPosition();
-
+		int node_index = itr - p.begin();
 
                 for (vector<Particle> :: iterator itr1 = p.begin(); itr1 != p.end(); itr1++) {
                         Particle part = *itr1;
@@ -58,12 +60,15 @@ vector< vector<int> >  NearestNeighbourSearch :: allPairsSearch(vector<Particle>
                 int i=0;
 		float h = node.getKernelLength();
                 while(true) {
-                        float dist = distance_from_node[i++].first;
+                        float dist = distance_from_node[i].first;
+			int index = distance_from_node[i].second;
                         if ( dist > h )
                                 break;
                         else {
-                                nearest_neighbours.push_back(dist);
+				if (index != node_index)
+                                	nearest_neighbours.push_back(index);
                         }
+			i++;
                 }
 
                 neighbours.push_back(nearest_neighbours);

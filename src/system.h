@@ -4,6 +4,13 @@
 #include "utility.h"
 using namespace std;
 
+struct Boundary {
+	int xmin;
+	int ymin;
+	int xmax;
+	int ymax;
+};
+
 class System {
 	
 	float mass;
@@ -12,16 +19,18 @@ class System {
 	vector<Particle> particles;
 	float initialSpacing;
 	float D;
+	Boundary B;
 	
 		
-	
 public:
 	System();
 	vector<Particle> getParticles();
+	Boundary getBoundary();
 	float getTimeStep();
 	float getInitialSpacing();
 	float getD();
-	
+	void setParticles(vector<Particle>);
+	void setBoundary(Boundary B);	
 };
 
 

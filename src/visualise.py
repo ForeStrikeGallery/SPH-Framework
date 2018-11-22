@@ -27,5 +27,5 @@ def visualise_system(filename):
 
 
 if __name__ == '__main__':
-	filename = 'test3.txt'
+	filename = 'test4.txt'
 	visualise_system(filename)
